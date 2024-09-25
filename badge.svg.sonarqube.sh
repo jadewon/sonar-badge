@@ -130,7 +130,7 @@ elif [[ $SONAR_TOKEN =~ ^sqa_ ]]; then
   exit 1;
 # user token
 elif [[ $SONAR_TOKEN =~ ^squ_ ]]; then
-  RESPONSE=$(curl -sS -H "Authorization: Bearer $SONAR_TOKEN" "http://localhost:9000/api/project_badges/token?project=$SONAR_PROJECT")
+  RESPONSE=$(curl -sS -u ${SONAR_TOKEN}: "$SONAR_HOST_URL/api/project_badges/token?project=$SONAR_PROJECT")
   SONAR_TOKEN=$(echo $RESPONSE | cut -d'"' -f4)
 # badge token
 elif [[ ! $SONAR_TOKEN =~ ^sqb_ ]]; then
